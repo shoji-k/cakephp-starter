@@ -1,0 +1,15 @@
+{
+  "name": "shoji-k/cakephp-starter",
+  "authors": [
+    {
+      "name": "kobayashi shoji",
+      "email": "shoji.kobayashi.0125@gmail.com"
+    }
+  ],
+  "config": {
+    "vendor-dir": "Vendor"
+  },
+  "require": {
+    "cakephp/cakephp": "2.*"
+  }
+}
