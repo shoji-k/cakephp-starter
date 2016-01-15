@@ -13,6 +13,7 @@
     "cakephp/cakephp": "2.*"
   },
   "require-dev": {
-    "cakephp/debug_kit": "2.*"
+    "cakephp/debug_kit": "2.*",
+    "phpunit/phpunit": "3.7.*"
   }
 }
