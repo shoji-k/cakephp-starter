@@ -6,31 +6,35 @@ App::uses('AppModel', 'Model');
  */
 class Post extends AppModel {
 
-/**
- * Validation rules
- *
- * @var array
- */
-	public $validate = array(
-		'title' => array(
-			'notBlank' => array(
-				'rule' => array('notBlank'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'body' => array(
-			'notBlank' => array(
-				'rule' => array('notBlank'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-	);
+    /**
+     * Validation rules
+     *
+     * @var array
+     */
+    public $validate = [
+        'title' => [
+            'notBlank' => [
+                'rule' => ['notBlank'],
+                'message' => 'Input title.',
+                'allowEmpty' => false,
+                'required' => true,
+            ],
+            'maxLength' => [
+                'rule' => ['maxLength', '255'],
+                'message' => 'Input title in 255 characters or less.',
+            ],
+        ],
+        'body' => [
+            'notBlank' => [
+                'rule' => ['notBlank'],
+                'message' => 'Input body.',
+                'allowEmpty' => false,
+                'required' => true,
+            ],
+            'maxLength' => [
+                'rule' => ['maxLength', '255'],
+                'message' => 'Input body in 255 characters or less.',
+            ],
+        ],
+    ];
 }
