@@ -1,3 +1,10 @@
 Vendor/*
 Plugin/*
 app/tmp/*
+
+# wercker
+_builds
+_cache
+_steps
+_temp
+

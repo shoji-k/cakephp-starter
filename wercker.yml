@@ -1,0 +1,68 @@
+# TODO: fail to imstall mysql
+box: boedy/wercker-php
+services:
+  - id: mysql
+    username: $USERNAME
+    password: $PASSWORD
+    tag: latest
+    env:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: cakephp_starter
+dev:
+  steps:
+    - script:
+        name: show env vars
+        code: env
+    - script:
+        name: mysql versoin
+        code: |
+          mysql --version
+    # - script:
+    #     name: Update apt
+    #     code: |
+    #       sudo apt-get update
+    # - script:
+    #     name: Install dependencies
+    #     code: |
+    #       sudo apt-get install -y php5-mysql curl libcurl3 libcurl3-dev php5-curl
+    #       docker-php-ext-install bcmath
+    #       docker-php-ext-install pdo_mysql curl
+    #       composer self-update
+    #       composer install
+    # - script:
+    #     name: setup test db
+    #     code: mysql -h$WERCKER_MYSQL_HOST -P$WERCKER_MYSQL_PORT -u$WERCKER_MYSQL_USERNAME -p$WERCKER_MYSQL_PASSWORD $WERCKER_MYSQL_DATABASE < sql/db.sql
+    # - script:
+    #     name: mysql versoin
+    #     code: |
+    #       mysql --version
+    # - script:
+    #     name: migrate
+    #     code: |
+    #       ./app/Console/cake migrations.migration run all
+    # - script:
+    #     name: app test
+    #     code: |
+    #       app/Console/cake test app AllTests
+
+# Build definition
+build:
+  # The steps that will be executed on build
+  steps:
+    - script:
+        code: export NODE_ENV='testing'
+    # A step that executes `npm install` command
+    - npm-install
+    # A step that executes `npm test` command
+    - npm-test
+
+    # A custom script step, name value is used in the UI
+    # and the code value contains the command that get executed
+    - script:
+        name: echo nodejs information
+        code: |
+          echo "node version $(node -v) running"
+          echo "npm version $(npm -v) running"
+
