@@ -54,4 +54,17 @@ class PostTest extends CakeTestCase {
         ];
     }
 
+    public function test一覧表示時は5件で新しい順である() {
+        for($i = 0; $i < 10; $i++) {
+            $this->Post->create();
+            $this->Post->save(['Post' =>
+                ['id' => false, 'title' => 'user1 post', 'body' => 'sample']
+            ]);
+        }
+        $actual = $this->Post->find('all', $this->Post->getPaginateSettings());
+        $this->assertCount(5, $actual);
+        $this->assertEquals([10, 9, 8, 7, 6], Hash::extract($actual, '{n}.Post.id'));
+        $this->assertEquals('user1 post', $actual[0]['Post']['title']);
+    }
+
 }

@@ -37,4 +37,11 @@ class Post extends AppModel {
             ],
         ],
     ];
+
+    public function getPaginateSettings() {
+        return [
+            'limit' => 5,
+            'order' => ['Post.id' => 'desc']
+        ];
+    }
 }

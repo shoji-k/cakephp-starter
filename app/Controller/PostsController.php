@@ -9,10 +9,7 @@ class PostsController extends AppController {
     public $helpers = ['Html', 'Form'];
 
     public function index() {
-        $this->Paginator->settings = [
-            'limit' => 5,
-            'order' => ['Post.id' => 'desc']
-        ];
+        $this->Paginator->settings = $this->Post->getPaginateSettings();
         $this->set('posts', $this->Paginator->paginate());
     }
 
